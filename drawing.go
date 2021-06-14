@@ -4,6 +4,7 @@ package dxfeather
 type Drawing struct {
 	Comment string
 
+	Header Header
 	LineTypes []LineType
 	Layers    []Layer
 	Blocks    []Block
@@ -18,6 +19,8 @@ func (d Drawing) ToDxfString() string {
 	if d.Comment != "" {
 		res += "999\n" + d.Comment + "\n"
 	}
+
+	res += d.Header.toDXFString()
 
 	// tables
 	res += formatString("0", "SECTION")
