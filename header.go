@@ -2,7 +2,6 @@ package dxfeather
 
 import (
 	"fmt"
-	"strconv"
 )
 
 const (
@@ -35,15 +34,9 @@ type Header struct {
 
 func (h Header) toDXFString() string {
 	var res string
-
-	res = formatString("0","SECTION")
-	res += formatString("2", "HEADER")
-	res += formatVariable("$INSUNITS", "70", strconv.Itoa(h.Units))
-	res += formatString("0","ENDSEC")
-
 	return res
 }
 
 func formatVariable(variable string, groupCode string, value string) string {
-	return fmt.Sprintf("%s\n%s\n%s\n", variable, groupCode, value)
+	return fmt.Sprintf("9\n%s\n%s\n%s\n", variable, groupCode, value)
 }
